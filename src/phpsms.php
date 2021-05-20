@@ -6,7 +6,7 @@ namespace jonatasrt;
 session_start();
 
 /**
- *  Classe simples para envio de SMS
+             *  Classe simples para envio de SMS
  *
  *
  *  @author Jonatas Teixeira
@@ -18,7 +18,7 @@ class phpsms
     /**
      * Carrega IP, PORTA e mensagem padrão, telefone e chave
      */
-    public function __construct($ip, $port, $sms = '', $fone = '', $key = '')
+    public function __construct($ip, $port, $sms = array(), $fone = '', $key = '')
     {
         $this->ip = $ip;
         $this->port = $port;
@@ -27,6 +27,17 @@ class phpsms
         $this->key = $key;
         $this->codigo = rand(100000, 999999);
     }
+
+
+
+
+    public function random_mensagem($cod, $array)
+    {
+        $arrX = $array;
+        $randIndex = array_rand($arrX);
+        return str_replace('#COD', $cod, $arrX[$randIndex]);
+    }
+
 
     /**
      * Envia SMS com código e cria sessão com o código
@@ -39,7 +50,7 @@ class phpsms
     public function get_sms()
     {
 
-        $posts = ['number' => $this->fone, 'message' => $this->codigo . ' ' . $this->sms, 'token' => $this->key];
+        $posts = ['number' => $this->fone, 'message' =>  $this->random_mensagem($this->codigo, $this->sms) , 'token' => $this->key];
 
 
         $config = array(
@@ -101,8 +112,4 @@ class phpsms
             return false;
         }
     }
-
-
-
-
 }
