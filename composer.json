@@ -1,0 +1,16 @@
+{
+    "name": "jonatasrt/phpsms",
+    "description": "Envio de SMS com PHP e APP android 'sms gateway App'",
+    "authors": [
+        {
+            "name": "Jonatas Teixeira",
+            "email": "jonatasteixeira@hotmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "jonatasrt\\": "src"
+        }
+    }
+}
